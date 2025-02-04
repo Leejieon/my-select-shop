@@ -1,16 +1,16 @@
-package com.sparta.myselectshop.service;
+package com.sparta.myselectshop.domain.product.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.sparta.myselectshop.dto.ProductMypriceRequestDto;
-import com.sparta.myselectshop.dto.ProductRequestDto;
-import com.sparta.myselectshop.dto.ProductResponseDto;
-import com.sparta.myselectshop.entity.Product;
-import com.sparta.myselectshop.naver.dto.ItemDto;
-import com.sparta.myselectshop.repository.ProductRepository;
+import com.sparta.myselectshop.domain.product.dto.ProductMypriceRequestDto;
+import com.sparta.myselectshop.domain.product.dto.ProductRequestDto;
+import com.sparta.myselectshop.domain.product.dto.ProductResponseDto;
+import com.sparta.myselectshop.domain.product.entity.Product;
+import com.sparta.myselectshop.domain.naver.dto.ItemDto;
+import com.sparta.myselectshop.domain.product.repository.ProductRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

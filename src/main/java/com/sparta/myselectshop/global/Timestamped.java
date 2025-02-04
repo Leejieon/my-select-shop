@@ -1,4 +1,4 @@
-package com.sparta.myselectshop.entity;
+package com.sparta.myselectshop.global;
 
 import java.time.LocalDateTime;
 

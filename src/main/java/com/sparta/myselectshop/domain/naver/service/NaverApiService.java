@@ -1,9 +1,8 @@
-package com.sparta.myselectshop.naver.service;
+package com.sparta.myselectshop.domain.naver.service;
 
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.sparta.myselectshop.naver.dto.ItemDto;
+import com.sparta.myselectshop.domain.naver.dto.ItemDto;
 
 import lombok.extern.slf4j.Slf4j;
 

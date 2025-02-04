@@ -6,11 +6,11 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.sparta.myselectshop.entity.Product;
-import com.sparta.myselectshop.naver.dto.ItemDto;
-import com.sparta.myselectshop.naver.service.NaverApiService;
-import com.sparta.myselectshop.repository.ProductRepository;
-import com.sparta.myselectshop.service.ProductService;
+import com.sparta.myselectshop.domain.product.entity.Product;
+import com.sparta.myselectshop.domain.naver.dto.ItemDto;
+import com.sparta.myselectshop.domain.naver.service.NaverApiService;
+import com.sparta.myselectshop.domain.product.repository.ProductRepository;
+import com.sparta.myselectshop.domain.product.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

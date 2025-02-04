@@ -1,4 +1,4 @@
-package com.sparta.myselectshop.naver.dto;
+package com.sparta.myselectshop.domain.naver.dto;
 
 import org.json.JSONObject;
 

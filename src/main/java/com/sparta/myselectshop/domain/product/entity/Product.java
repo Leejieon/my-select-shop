@@ -1,8 +1,9 @@
-package com.sparta.myselectshop.entity;
+package com.sparta.myselectshop.domain.product.entity;
 
-import com.sparta.myselectshop.dto.ProductMypriceRequestDto;
-import com.sparta.myselectshop.dto.ProductRequestDto;
-import com.sparta.myselectshop.naver.dto.ItemDto;
+import com.sparta.myselectshop.domain.product.dto.ProductMypriceRequestDto;
+import com.sparta.myselectshop.domain.product.dto.ProductRequestDto;
+import com.sparta.myselectshop.global.Timestamped;
+import com.sparta.myselectshop.domain.naver.dto.ItemDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

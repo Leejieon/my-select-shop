@@ -1,4 +1,4 @@
-package com.sparta.myselectshop.naver.controller;
+package com.sparta.myselectshop.domain.naver.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sparta.myselectshop.naver.dto.ItemDto;
-import com.sparta.myselectshop.naver.service.NaverApiService;
+import com.sparta.myselectshop.domain.naver.dto.ItemDto;
+import com.sparta.myselectshop.domain.naver.service.NaverApiService;
 
 import lombok.RequiredArgsConstructor;
 

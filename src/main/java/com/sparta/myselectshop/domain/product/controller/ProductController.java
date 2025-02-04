@@ -1,4 +1,4 @@
-package com.sparta.myselectshop.controller;
+package com.sparta.myselectshop.domain.product.controller;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sparta.myselectshop.dto.ProductMypriceRequestDto;
-import com.sparta.myselectshop.dto.ProductRequestDto;
-import com.sparta.myselectshop.dto.ProductResponseDto;
-import com.sparta.myselectshop.service.ProductService;
+import com.sparta.myselectshop.domain.product.dto.ProductMypriceRequestDto;
+import com.sparta.myselectshop.domain.product.dto.ProductRequestDto;
+import com.sparta.myselectshop.domain.product.dto.ProductResponseDto;
+import com.sparta.myselectshop.domain.product.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
 
