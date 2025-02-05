@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sparta.myselectshop.domain.product.dto.ProductMypriceRequestDto;
 import com.sparta.myselectshop.domain.product.dto.ProductRequestDto;
@@ -18,7 +19,6 @@ import com.sparta.myselectshop.domain.product.repository.ProductRepository;
 import com.sparta.myselectshop.domain.user.entity.User;
 import com.sparta.myselectshop.domain.user.entity.UserRoleEnum;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -50,6 +50,7 @@ public class ProductService {
 		return new ProductResponseDto(product);
 	}
 
+	@Transactional(readOnly = true)
 	public Page<ProductResponseDto> getProduct(User user, int page, int size, String sortBy, boolean isAsc) {
 		// Paging
 		Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
