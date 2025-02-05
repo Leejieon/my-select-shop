@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,12 @@ import lombok.extern.slf4j.Slf4j;
 public class NaverApiService {
 
 	private final RestTemplate restTemplate;
+
+	@Value("${api.open.naver.client-id}")
+	private String clientId;
+
+	@Value("${api.open.naver.client-secret}")
+	private String clientSecret;
 
 	public NaverApiService(RestTemplateBuilder builder) {
 		this.restTemplate = builder.build();
@@ -41,8 +48,8 @@ public class NaverApiService {
 
 		RequestEntity<Void> requestEntity = RequestEntity
 			.get(uri)
-			.header("X-Naver-Client-Id", "3vPLyag8SSUrwNseMldV")
-			.header("X-Naver-Client-Secret", "VBH6IVFbru")
+			.header("X-Naver-Client-Id", clientId)
+			.header("X-Naver-Client-Secret", clientSecret)
 			.build();
 
 		ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);
