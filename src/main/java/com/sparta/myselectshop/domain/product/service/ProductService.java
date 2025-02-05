@@ -11,6 +11,7 @@ import com.sparta.myselectshop.domain.product.dto.ProductResponseDto;
 import com.sparta.myselectshop.domain.product.entity.Product;
 import com.sparta.myselectshop.domain.naver.dto.ItemDto;
 import com.sparta.myselectshop.domain.product.repository.ProductRepository;
+import com.sparta.myselectshop.domain.user.entity.User;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,8 @@ public class ProductService {
 
 	private final ProductRepository productRepository;
 
-	public ProductResponseDto createProduct(ProductRequestDto requestDto) {
-		Product product = productRepository.save(new Product(requestDto));
+	public ProductResponseDto createProduct(ProductRequestDto requestDto, User user) {
+		Product product = productRepository.save(new Product(requestDto, user));
 		return new ProductResponseDto(product);
 	}
 
@@ -44,8 +45,8 @@ public class ProductService {
 		return new ProductResponseDto(product);
 	}
 
-	public List<ProductResponseDto> getProduct() {
-		List<Product> productList = productRepository.findAll();
+	public List<ProductResponseDto> getProduct(User user) {
+		List<Product> productList = productRepository.findAllByUser(user);
 		List<ProductResponseDto> responseDtoList = new ArrayList<>();
 
 		for (Product product : productList) {
@@ -60,5 +61,15 @@ public class ProductService {
 			() -> new NullPointerException("해당 상품은 존재하지 않습니다.")
 		);
 		product.updateByItemDto(itemDto);
+	}
+
+	public List<ProductResponseDto> getAllProducts() {
+		List<Product> productList = productRepository.findAll();
+		List<ProductResponseDto> responseDtoList = new ArrayList<>();
+
+		for (Product product : productList) {
+			responseDtoList.add(new ProductResponseDto(product));
+		}
+		return responseDtoList;
 	}
 }

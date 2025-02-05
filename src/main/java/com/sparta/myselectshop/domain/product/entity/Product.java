@@ -2,14 +2,18 @@ package com.sparta.myselectshop.domain.product.entity;
 
 import com.sparta.myselectshop.domain.product.dto.ProductMypriceRequestDto;
 import com.sparta.myselectshop.domain.product.dto.ProductRequestDto;
+import com.sparta.myselectshop.domain.user.entity.User;
 import com.sparta.myselectshop.global.Timestamped;
 import com.sparta.myselectshop.domain.naver.dto.ItemDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,11 +45,16 @@ public class Product extends Timestamped {
 	@Column(nullable = false)
 	private int myprice;
 
-	public Product(ProductRequestDto requestDto) {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	public Product(ProductRequestDto requestDto, User user) {
 		this.title = requestDto.getTitle();
 		this.image = requestDto.getImage();
 		this.link = requestDto.getLink();
 		this.lprice = requestDto.getLprice();
+		this.user = user;
 	}
 
 	public void update(ProductMypriceRequestDto requestDto) {
