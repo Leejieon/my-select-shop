@@ -3,6 +3,10 @@ package com.sparta.myselectshop.domain.product.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sparta.myselectshop.domain.product.dto.ProductMypriceRequestDto;
@@ -12,6 +16,7 @@ import com.sparta.myselectshop.domain.product.entity.Product;
 import com.sparta.myselectshop.domain.naver.dto.ItemDto;
 import com.sparta.myselectshop.domain.product.repository.ProductRepository;
 import com.sparta.myselectshop.domain.user.entity.User;
+import com.sparta.myselectshop.domain.user.entity.UserRoleEnum;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService {
 
-	private final static int MIN_MY_PRICE = 100;
+	public final static int MIN_MY_PRICE = 100;
 
 	private final ProductRepository productRepository;
 
@@ -45,14 +50,21 @@ public class ProductService {
 		return new ProductResponseDto(product);
 	}
 
-	public List<ProductResponseDto> getProduct(User user) {
-		List<Product> productList = productRepository.findAllByUser(user);
-		List<ProductResponseDto> responseDtoList = new ArrayList<>();
+	public Page<ProductResponseDto> getProduct(User user, int page, int size, String sortBy, boolean isAsc) {
+		// Paging
+		Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+		Sort sort = Sort.by(direction, sortBy);
+		Pageable pageable = PageRequest.of(page, size, sort);
 
-		for (Product product : productList) {
-			responseDtoList.add(new ProductResponseDto(product));
+		UserRoleEnum role = user.getRole();
+
+		Page<Product> productList;
+		if (role == UserRoleEnum.USER) {
+			productList = productRepository.findAllByUser(user, pageable);
+		} else {
+			productList = productRepository.findAll(pageable);
 		}
-		return responseDtoList;
+		return productList.map(ProductResponseDto::new);
 	}
 
 	@Transactional
